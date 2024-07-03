@@ -12,12 +12,14 @@ SOURCES += \
     buttons.cpp \
     input.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    table.cpp
 
 HEADERS += \
     buttons.h \
     input.h \
-    mainwindow.h
+    mainwindow.h \
+    table.h
 
 FORMS += \
     mainwindow.ui

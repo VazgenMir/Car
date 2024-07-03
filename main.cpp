@@ -3,6 +3,7 @@
 #include "input.h"
 #include <QApplication>
 #include <QVBoxLayout>
+#include <QTableView>
 void Insert();
 int main(int argc, char *argv[])
 {
@@ -14,7 +15,9 @@ int main(int argc, char *argv[])
     layout1->addLayout(layout);
     //layout1->addWidget(new Input);
     central->setLayout(layout1);
-    layout->addWidget(new Buttons());
+    QTableView *table = new QTableView();
+    layout->addWidget(new Buttons(table));
+    layout1->addWidget(table);
     window.setCentralWidget(central);
     //window.setFixedSize(650,700);
     window.show();

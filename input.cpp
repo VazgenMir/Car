@@ -1,14 +1,17 @@
 #include "input.h"
+#include "qtableview.h"
+#include "table.h"
 #include <QLineEdit>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QIntValidator>
 #include <QPushButton>
 
-Input::Input(int &num, int &last)
+Input::Input(int &num, int &last, QWidget *wdg = 0, QLayout *layout1 = 0, QTableView *table = 0)
 {
 layout = new QHBoxLayout(this);
-    delete_ = new QPushButton("X",this);
+    //delete_ = new QPushButton("X",this);
+    ok = new QPushButton("OK",this);
     check = new QCheckBox(this);
     text1 = new QLineEdit(this);
     text2 = new QLineEdit(this);
@@ -33,7 +36,8 @@ layout = new QHBoxLayout(this);
     layout->addWidget(text3);
     layout->addWidget(label5);
     layout->addWidget(check);
-    layout->addWidget(delete_);
+    //layout->addWidget(delete_);
+    layout->addWidget(ok);
     label1->setText("Make:");
     text->setFixedSize(80,20);
     text->setStyleSheet("QLineEdit{font-size:10px;}");
@@ -56,6 +60,9 @@ layout = new QHBoxLayout(this);
     connect(delete_, &QPushButton::clicked, [this,&num,&last]() {
         Click(num,last);
     });
+    connect(ok, &QPushButton::clicked, [this,wdg,layout1,&num,&last,table]() {
+        Click1(wdg,layout1,num,last,table);
+    });
 
 }
 void Input::Click(int &num,int &last){
@@ -69,4 +76,8 @@ if(inf == QString::number(last)){
         delete item->widget();
 
     }
+}
+void Input::Click1(QWidget *wdg,QLayout *layout1,int &num,int &last,QTableView *table){
+    wdg->hide();
+    layout1->addWidget(new Table(num,table));
 }
